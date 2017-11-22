@@ -162,7 +162,7 @@ class PostController extends Controller
         {
           $image = $request->file('image');
           $filename = time().'.'.$image->getClientOriginalExtension();
-          $location = storage_path('images/'.$filename);
+          $location = public_path('images/'.$filename);
           Image::make($image)->resize(800,400)->save($location);
 
           $oldimage = $post->image;
