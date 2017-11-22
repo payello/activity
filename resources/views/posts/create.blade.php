@@ -67,7 +67,7 @@
 
 @section('scripts')
 
-    <script src="{{ asset('js/select2.min.js') }}"></script>
+    {!! !  Html::script('js/select2.min.js') !!}
 
     <script type="text/javascript">
         $(document).ready(function() {
