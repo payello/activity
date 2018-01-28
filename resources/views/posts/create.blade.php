@@ -66,8 +66,8 @@
 @endsection
 
 @section('scripts')
-
-    {!! !  Html::script('js/select2.min.js') !!}
+    {{--check that this is the correct syntax for adding a script in Laravel--}}
+    <script src="{{ URL::to('js/select2.min.js') }}"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
