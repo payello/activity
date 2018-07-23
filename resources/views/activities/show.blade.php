@@ -5,13 +5,16 @@
 <div class="col-md-8">
 <div class="form-group">
 
-
+  @if (session('status'))
+    <div class="alert alert-success">
+      <p class="success">The Activity has been updated.</p>
+    </div>
+  @endif
 
   <h1>{{ $activity->activity_name}} - <small>{{$activity->posts()->count()}} POSTS</small></h1>
   <div class="row">
 
   <a href="{{ route('activities.edit', $activity->id) }}" class="btn btn-primary">EDIT</a>
-
 
     {{ Form::open(['route'=> ['activities.destroy', $activity->id], 'method'=>'DELETE']) }}
       {{Form::submit('Delete', ['class'=>'btn btn-danger']) }}

@@ -24,33 +24,31 @@
                 {{Form::bsTextarea('body','',['placeholder' => 'Trip Description', 'class'=>'form-control'])}}
 
             </div>
+
             {{Form::label('country_id', 'Country: ')}}
-            <select class="form-control" name="country_id">
+            <select class="form-control select2-single" name="country_id">
                 @foreach($countries as $country)
                     <option value="{{ $country->id }}">{{ $country->countryname}}</option>
                 @endforeach
             </select>
 
-            {{ Form::label('activities', 'Activity:')}}
-            <select class="form-control select2-multi" name="activities[]" multiple="multiple">
+            {{ Form::label('activities', 'Activities: ') }}
+
+            <select class="form-control select2-multi" name="activity_id"  multiple="multiple">
                 @foreach($activities as $activity)
-                    <option value="{{ $activity->id }}">{{ $activity->activity_name}}</option>
+                    <option value='{{$activity->id}}'>{{$activity->activity_name}}</option>
                 @endforeach
 
             </select>
+
             {{ Form::label('image', 'Upload image: ')}}
             {{ Form::file('image') }}
-
-
 
             {{Form::bsSubmit('Create Post', ['class'=>'btn btn-primary ']) }}
 
 
             {!! Form::close() !!}
 
-            <script type="text/javascript">
-                $('.select2-multi').select2();
-            </script>
 
 
         @endif
@@ -67,12 +65,18 @@
 
 @section('scripts')
     {{--check that this is the correct syntax for adding a script in Laravel--}}
-    <script src="{{ URL::to('js/select2.min.js') }}"></script>
+    {!! Html::script('js/select2.min.js') !!}
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
+        $(document).ready(function () {
+            $('.select2-multi').select2();
         });
+
+        $(document).ready(function () {
+            $('.select2-single').select2();
+        });
+
+
     </script>
 
 @endsection

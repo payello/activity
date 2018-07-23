@@ -1,9 +1,20 @@
 <?php
 
+use App\Activity;
 use Illuminate\Database\Seeder;
 
 class ActivitiesTableSeeder extends Seeder
 {
+    /**
+     *
+     * @var
+     */
+    protected $activities = [
+        ['activity_name' => 'Cycling'],
+        ['activity_name' => 'Skiing'],
+        ['activity_name' => 'Snowboarding'],
+    ];
+
     /**
      * Run the database seeds.
      *
@@ -11,18 +22,9 @@ class ActivitiesTableSeeder extends Seeder
      */
     public function run()
     {
-        $post = new \App\Post([
-           'activity_name'=>'Cycling'
-        ]);
-        $post->save();
-
-        $post = new \App\Post([
-            'activity_name'=>'Skiing'
-        ]);
-
-        $post = new \App\Post([
-            'activity_name'=>'Snowboarding'
-        ]);
+        foreach ($this->activities as $activity) {
+            Activity::firstOrCreate($activity);
+        }
     }
 
 }

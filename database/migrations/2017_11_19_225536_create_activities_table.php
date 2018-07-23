@@ -18,12 +18,7 @@ class CreateActivitiesTable extends Migration
             $table->string('activity_name')->unique();
             $table->timestamps();
         });
-        Schema::create('activity_post', function (Blueprint $table) {
-            $table->integer('activity_id');
 
-            $table->integer('post_id');
-            $table->primary(['activity_id', 'post_id']);
-        });
     }
 
     /**
@@ -34,7 +29,5 @@ class CreateActivitiesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('activities');
-        Schema::dropIfExists('activity_post');
-
     }
 }

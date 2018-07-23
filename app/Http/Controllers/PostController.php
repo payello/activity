@@ -2,27 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Activity;
-use App\Country;
 use App\Post;
-use Carbon\Carbon;
+use App\Country;
+use App\Activity;
 use Illuminate\Http\Request;
-use Image;
-use Session;
+use Intervention\Image\Facades\Image;
 use Storage;
+use Session;
 
 
 class PostController extends Controller
 {
-  protected $fillable = [
-    'title',
-    'body'
-  ];
+    /**
+     * The fillable fields;
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title',
+        'body',
+        'country_id',
+        'user_id'
+    ];
 
-  public function __contruct()
+    public function __contruct()
     {
         $this->middleware('auth')->except(['index', 'show']);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,11 +37,10 @@ class PostController extends Controller
      */
     public function index()
     {
-      $activities = Activity::all();
+        $activities = Activity::all();
+        $posts = Post::latest()->get();
 
-      $posts = Post::latest()->get();
-
-      return view('posts.index')->withPosts($posts);
+        return view('posts.index')->withPosts($posts)->withActivities($activities);
     }
 
     /**
@@ -44,144 +50,133 @@ class PostController extends Controller
      */
     public function create()
     {
-      $countries = Country::all();
+        $countries = Country::all();
+        $activities = Activity::all();
 
-      $activities = Activity::all();
-      return view('posts.create')->withCountries($countries)->withActivities($activities);
+        return view('posts.create')->withCountries($countries)->withActivities($activities);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-      $countries = Country::all();
-      $activities = Activity::all();
+        // Create a new post using the request data
+        // Save it to the database
+        $this->validate($request, array(
+            'title' => 'required',
+            'body' => 'required',
+            'country_id' => 'required|integer',
+            'image' => 'image'
 
-      // Create a new post using the request data
-      // Save it to the database
-      $this->validate($request, array(
-      'title' => 'required',
-      'body' => 'required',
-      'country_id'=>'required|integer',
-      'image'=> 'image'
+        ));
 
-      ));
+        $post = Post::create([
+            'title' => request('title'),
+            'body' => request('body'),
+            'country_id' => request('country_id'),
+            'user_id' => auth()->id(),
 
-      $post = Post::create([
-      'title' =>request('title'),
-      'body' =>request('body'),
-      'country_id'=>request('country_id'),
-      'user_id' => auth()->id(),
+        ]);
 
-    ]);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/' . $filename);
+            Image::make($image)->resize(800, 400)->save($location);
 
-      if($request->hasFile('image')){
-        $image = $request->file('image');
-        $filename = time().'.'.$image->getClientOriginalExtension();
-        $location = public_path('images/'.$filename);
-        Image::make($image)->resize(800,400)->save($location);
+            $post->image = $filename;
+        }
 
-        $post->image = $filename;
-      }
+        $post->save();
 
-      $post->save();
-
-      $post->activities()->sync($request->activities, false);
+        $post->activities()->sync($request->activities, false);
 
 
-      // And then redirect to somewhere in  application
-      return redirect()->route('posts.show', $post->id);
+        // And then redirect to somewhere in  application
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Post $post
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
     {
-      $countries = Country::all();
-
-      return view('posts.show', compact('post'));
-
+        return view('posts.show')->withPost($post);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-      $post = Post::find($id);
+        $post = Post::find($id);
 
-      $countries = Country::all();
-      $ctry = array();
+        $activities = Activity::all();
 
-      foreach($countries as $country)
-      {
-        $ctry[$country->id] = $country->countryname;
-      }
+        $countries = Country::all();
+        $ctry = array();
+
+        foreach ($countries as $country) {
+            $ctry[$country->id] = $country->countryname;
+        }
 
 
+        $activity2 = array();
+        foreach ($activities as $activity) {
+            $activity2[$activity->id] = $activity->activity_name;
+        }
 
-      $activities = Activity::all();
-      $activity2 = array();
-      foreach ($activities as $activity)
-      {
-        $activity2[$activity->id] = $activity->activity_name;
-      }
-
-      return view('posts.edit')->withPost($post)->withCountries($ctry)->withActivities($activity2);
-
+        return view('posts.edit')->withPost($post)->withCountries($ctry)->withActivities($activity2);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
 
-
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->user_id = auth()->id();
 
-        if($request->hasFile('image'))
-        {
-          $image = $request->file('image');
-          $filename = time().'.'.$image->getClientOriginalExtension();
-          $location = public_path('images/'.$filename);
-          Image::make($image)->resize(800,400)->save($location);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/' . $filename);
+            Image::make($image)->resize(800, 400)->save($location);
 
-          $oldimage = $post->image;
+            $oldimage = $post->image;
 
-          $post->image = $filename;
+            $post->image = $filename;
 
-          Storage::delete($oldimage);
+            Storage::delete($oldimage);
         }
 
         $post->save();
 
-        if(isset($request->activities))
-        {
-          $post->activities()->sync($request->activities);
+        if (isset($request->activities)) {
+            $post->activities()->sync($request->activities);
+        } else {
+            $post->activities()->sync(array());
         }
-        else {
-          $post->activities()->sync(array());
-        }
-        Session::flash('success', 'This trip has been modified.');
+        $request->session()->flash('success', 'This trip has been modified.');
 
         return redirect()->route('posts.show', $post->id);
     }
@@ -190,19 +185,24 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $post = Post::find($id);
-        $post->activities()->detach();
+
+        if (!is_null($post->activities)) {
+            $post->activities()->detach();
+        }
 
         Storage::delete($post->image);
 
         $post->delete();
 
-        Session::flash('success', 'Your trip has been removed.');
+        $request->session()->flash('success', 'Your trip has been removed.');
 
         return redirect()->route('posts.index');
     }
@@ -211,6 +211,4 @@ class PostController extends Controller
     {
         return $this->belongsToMany('App\Activity')->using('App\activityPost');
     }
-
-
 }

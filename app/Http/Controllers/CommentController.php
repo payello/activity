@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
 use App\Post;
+use App\Comment;
 
 class CommentController extends Controller
 {
@@ -11,20 +11,20 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Post $post
+     *
      * @return \Illuminate\Http\Response
      */
-      public function store(Post $post)
-      {
-        $this->validate(request(), ['body'=> 'required|min:2']);
+    public function store(Post $post)
+    {
+        $this->validate(request(), ['body' => 'required|min:2']);
 
-            Comment::create([
-              'body'=> request('body'),
-              'post_id'=>$post->id,
-              'user_id'=>auth()->id()
-            ]);
+        Comment::create([
+            'body' => request('body'),
+            'post_id' => $post->id,
+            'user_id' => auth()->id()
+        ]);
 
-            return back();
-      }
-
-  }
+        return back();
+    }
+}
