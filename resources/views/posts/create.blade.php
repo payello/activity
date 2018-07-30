@@ -18,7 +18,7 @@
             <div class="form-group">
 
 
-                {!!Form::open(['action' => 'PostController@store','method' => 'POST', 'class'=>'form-group', 'files'=>true])!!}
+                {!!Form::open(['action' => 'Travel\PostController@store','method' => 'POST', 'class'=>'form-group', 'files'=>true])!!}
                 {{Form::bsText('title','',['placeholder' => 'Trip Name','class'=>'form-control'])}}
                 <br>
                 {{Form::bsTextarea('body','',['placeholder' => 'Trip Description', 'class'=>'form-control'])}}

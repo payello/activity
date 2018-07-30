@@ -5,17 +5,17 @@
 
        </ul>
        <a class="nav-link active" href="/">Home</a>
-       <a class="nav-link" href="/about">About</a>
+       <a class="nav-link" href="/travel/about">About</a>
 
  <!-- Authentication Links -->
     @if (Auth::guest())
 
-       <a class="nav-link" href="{{ route('login') }}">Login</a>
-       <a class="nav-link" href="{{ route('register') }}">Register</a>
+       <a class="nav-link" href="/travel/login">Login</a>
+       <a class="nav-link" href="/travel/register">Register</a>
      @else
 
-      <a class="nav-link" href="/posts/create">Add new Trip</a>
-      <a class="nav-link" href="/activities/">Add  Activity</a>
+      <a class="nav-link" href="/travel/posts/create">Add new Trip</a>
+      <a class="nav-link" href="/travel/activities/">Add  Activity</a>
       <a class="nav-link" href="{{ route('logout') }}"
       onclick="event.preventDefault();
       document.getElementById('logout-form').submit();">

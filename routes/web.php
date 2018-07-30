@@ -18,7 +18,7 @@ Route::group([
     Route::get('/logout', 'Auth\LoginController@destroy');
     Auth::routes();
 
-    Route::resource('photos', 'PhotoController');
+//    Route::resource('photos', 'PhotoController');
     Route::resource('posts', 'PostController');
     Route::post('posts/{post}/comments', 'CommentController@store');
 

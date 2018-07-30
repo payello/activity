@@ -10,19 +10,6 @@
             <h1>Edit the Activity Holiday</h1>
 
             <hr>
-            {{--<form action="{{ route(['posts.update', $post->id]) }}" method="PUT" enctype="multipart/form-data">--}}
-                {{--{{ csrf_field() }}--}}
-                {{--<label for="title">Title</label>--}}
-                {{--<input type="text" name='title' class="form-control">--}}
-
-                {{--<label for="body">Description</label>--}}
-                {{--<input type="text" name='body' class="form-control">--}}
-
-                {{--<label for="countries">Country</label>--}}
-                {{--<input type="select" name="countries[]" class="form-control select2-selection--single">--}}
-
-
-            {{--</form>--}}
             {!! Form::model($post, ['route'=>['posts.update', $post->id], 'method'=>'PUT', 'files'=>true]) !!}
             {{Form::label('title', 'Title:') }}
             {{Form::text('title', null, ["class"=> 'form-control']) }}
