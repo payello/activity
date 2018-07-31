@@ -68,7 +68,7 @@
 
         @if(Auth::check())
             <div class="card-block">
-                <form method="POST" action="/posts/{{ $post-> id}}/comments">
+                <form method="POST" action="/travel/posts/{{ $post-> id}}/comments">
                     {{csrf_field()}}
                     <div class="form-group">
 
