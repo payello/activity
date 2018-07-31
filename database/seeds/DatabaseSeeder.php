@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CommentsTableSeeder::class);
         $this->call(CountriesTableSeeder::class);
         $this->call(PostTableSeeder::class);
-        $this->call(ActivityPostTableSeeder::class);
+//        $this->call(ActivityPostTableSeeder::class);
     }
 }
