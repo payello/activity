@@ -4,14 +4,14 @@
        <ul>
 
        </ul>
-       <a class="nav-link active" href="/travel">Home</a>
-       <a class="nav-link" href="/travel/about">About</a>
+       <a class="nav-link active" href="{{ route('home') }}">Home</a>
+       <a class="nav-link" href="{{ route('about') }}">About</a>
 
  <!-- Authentication Links -->
     @if (Auth::guest())
 
-       <a class="nav-link" href="/travel/login">Login</a>
-       <a class="nav-link" href="/travel/register">Register</a>
+       <a class="nav-link" href="{{ route('login') }}">Login</a>
+       <a class="nav-link" href="{{ route('register') }}">Register</a>
      @else
 
       <a class="nav-link" href="/travel/posts/create">Add new Trip</a>

@@ -67,7 +67,7 @@
         </div>
         <div class="shot col-md-6 col-sm-12">
             <a href="http://peterayellowright.co.uk/b2bb.html">
-                <img src="{{ asset('portfolio/images/b2bb_image1.png') }}" width="600px" alt="Born to be Beautiful Site">
+                <img src="{{ asset('images/portfolio/b2bb_image1.png') }}" width="600px" alt="Born to be Beautiful Site">
             </a>
             <caption>An image of the charity's embedded magazine .</caption>
         </div>
@@ -99,7 +99,7 @@
         <div class="col-md-6 col-sm-12">
 
             <a href="">
-                <img src="{{ asset('images/portfoliob/2bb_image2.png') }}" alt="Born to be Beautiful">
+                <img src="{{ asset('images/portfolio/b2bb_image2.png') }}" alt="Born to be Beautiful">
             </a>
             <caption class="text-center">The latest India visit where volunteers went to assist train the lad.</caption>
         </div>

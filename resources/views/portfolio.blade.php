@@ -122,10 +122,10 @@
                         </ul>
 
                         <div>
-                            <a class="btn btn-default" href="{!! url('read-more/activity') !!} " target="_blank">
+                            <a class="btn btn-default" href="{{ route('read-more.activity') }}" target="_blank">
                                 <button class="btn btn-default">Read more...</button>
                             </a>
-                            <a href="{!! url('travel') !!}" target="_blank">
+                            <a href="{{ route('home') }}" target="_blank">
                                 <button class="btn btn-default">Try it!</button>
                             </a>
                         </div>
@@ -151,10 +151,10 @@
                         </ul>
 
                         <div>
-                            <a href="{!! url('read-more/currency') !!}" target="_blank">
+                            <a href="{{ route('read-more.currency') }}" target="_blank">
                                 <button class="btn btn-default">Read more...</button>
                             </a>
-                            <a href="/currency" target="_blank">
+                            <a href="{{ route('currency') }}" target="_blank">
                                 <button class="btn btn-default">Try it!</button>
                             </a>
                         </div>
@@ -179,7 +179,7 @@
                             <li>API</li>
                         </ul>
                         <div>
-                            <a href="{!! url('read-more/suggestions') !!}" target="_blank">
+                            <a href="{{ route('read-more.suggestions') }}" target="_blank">
                                 <button class="btn btn-default">Read more...</button>
                             </a>
                             <a href="http://thesuggestions.co.uk" target="_blank">
@@ -213,7 +213,7 @@
                     </ul>
 
                     <div>
-                        <a href="{!! url('read-more/born-to-be') !!}" target="_blank">
+                        <a href="{{ route('read-more.born-to-be') }}" target="_blank">
                             <button class="btn btn-default">Read more...</button>
                         </a>
                         <a href="http://borntobebeautiful.org" target="_blank">
@@ -243,7 +243,7 @@
                     </ul>
 
                     <div>
-                        <a href="{!! url('read-more/tgc') !!}" target="_blank">
+                        <a href="{{ route('read-more.tgc') }}" target="_blank">
                             <button class="btn btn-default">Read more...</button>
                         </a>
                         <a href="https://www.thegoodcards.com/" target="_blank">

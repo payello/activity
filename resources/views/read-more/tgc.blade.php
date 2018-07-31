@@ -64,8 +64,10 @@
             </div>
         </div>
         <div class="shot col-md-6 col-sm-12">
-            <a href="https://thegoodcards.com"><img src="/images/Mobile_Card.png" width="600px"
-                                                                    alt="The Good Cards"></a>
+            <a href="https://thegoodcards.com">
+                <img src="{!! asset('images/portfolio/Mobile_Card.png') !!}" width="600px"
+                     alt="The Good Cards">
+            </a>
             <caption>The Good Card product with the mobile app.</caption>
         </div>
     </div>
@@ -93,7 +95,7 @@
 
         <div class="col-md-6 col-sm-12">
             <div class="row">
-                <a href=""><img src="images/GC_Mobile.png" alt="Born to be Beautiful"></a>
+                <a href=""><img src="{!! asset('images/portfolio/GC_Mobile.png') !!}" alt="Born to be Beautiful"></a>
             </div>
             <caption class="text-center">Using the Good Card app.</caption>
         </div>
