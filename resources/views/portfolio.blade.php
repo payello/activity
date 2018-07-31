@@ -306,6 +306,8 @@
         <i title="HTML5" class="mfizz icon-html5-alt"></i>
         <i title="JavaScript" class="mfizz icon-javascript-alt"></i>
         <i title="Bash Shell" class="mfizz icon-shell"></i>
+        <i title="git" class="mfizz icon-git"></i>
+
     </div>
 </div>
 
