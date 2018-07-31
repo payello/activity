@@ -32,7 +32,7 @@
 
         @if(Auth::check())
             <div class="row">
-                <a href="{{ "/posts/".$post->id."/edit"}}">
+                <a href="{{ $post->id."/edit"}}">
                     <button type="submit" name="button" class="btn-spacing btn btn-primary">
                         Edit this trip
                     </button>
