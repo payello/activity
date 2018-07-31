@@ -322,28 +322,50 @@
 
     <section id="cd-timeline" class="cd-container">
         <div class="cd-timeline-block">
-            <div class="cd-timeline-i cd-picture">
+            <div class="cd-timeline-i cd-movie">
             </div> <!-- cd-timeline-img -->
 
             <div class="cd-timeline-content">
                 <h3>Freddie's Flowers</h3>
                 <h4>Junior PHP Developer</h4>
-                <h4>London</h4>
+                <h4>London, UK</h4>
                 <ul>
-                    <li>Volunteering remotely for an ambitious charity based in California whose aim is to spread
-                        happiness throughout the world by doing good deeds. Their main focus is <a
-                                href="www.thegoodcards.com">The Good Cards</a> which is an IoT card game concept based
-                        on doing good deeds.
+                    <li>
+                        Working with PHP Laravel 5.5 using PSR-2 coding standards, Vue.js, jQuery, and HTML/CSS. I was
+                        assigned tasks concerned with bug fixes and new features to the main site, the internal software
+                        app and the canvasser sales page from JIRA’s Kanban board. Each task was given it’s own pull
+                        request in GitHub and then pushed to the testing environment to be tested by its creator to
+                        ensure that the specifications were correctly implemented.
                     </li>
-                    <li>My role is to assist with the development and creation of web pages for the charity using
-                        WordPress with CornerStone page builder and to collate, analyse and present the Google Analytics
-                        data in the weekly meeting. All sites are connected to web marketing campaigns and I implement
-                        activCampaign on all sites through ConvertPlug plugin. I regularly make multiple pages with
-                        slight differences in order to be A/B tested for their effectiveness using Google Analytics and
-                        ConvertPlug
+                    <li>
+                        Assisted with the implementation of changes required by the GDPR law including permissions and
+                        marketing options.
                     </li>
+                    <li>Regularly made cosmetic changes and content modifications to the front end of the site using
+                        HTML/CSS, jQuery and Vue.js.
+                    </li>
+                    <li>
+                        Built a RESTful API with Vue.js components to assist customer service with implementation of a new
+                        process where they could dynamically track defaulted customers.
+                    </li>
+                    <li>
+                        Connected the internal software app to the ZenDesk API so customer service staff had realtime
+                        information concerning a customer when they contacted customer service thereby improving the
+                        customer’s experience.
+                    </li>
+                    <li>
+                        Generated asynchronous commands for jobs and scheduled them to run at specified time.
+                    </li>
+                    <li>
+                        Regularly fixed bugs that were discovered by staff from all areas of the business and outlined on
+                        the JIRA Kanban board.
+                    </li>
+                    <li>
+                        I built reports using Datatables that were used by management to provide data for decision making.
+                    </li>
+
                 </ul>
-                <span class="cd-date">03/2017 - Present</span>
+                <span class="cd-date">02/17 - Present</span>
             </div> <!-- cd-timeline-content -->
         </div> <!-- cd-timeline-block -->
         <div class="cd-timeline-block">
