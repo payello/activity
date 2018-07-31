@@ -322,6 +322,31 @@
 
     <section id="cd-timeline" class="cd-container">
         <div class="cd-timeline-block">
+            <div class="cd-timeline-i cd-picture">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h3>Freddie's Flowers</h3>
+                <h4>Junior PHP Developer</h4>
+                <h4>London</h4>
+                <ul>
+                    <li>Volunteering remotely for an ambitious charity based in California whose aim is to spread
+                        happiness throughout the world by doing good deeds. Their main focus is <a
+                                href="www.thegoodcards.com">The Good Cards</a> which is an IoT card game concept based
+                        on doing good deeds.
+                    </li>
+                    <li>My role is to assist with the development and creation of web pages for the charity using
+                        WordPress with CornerStone page builder and to collate, analyse and present the Google Analytics
+                        data in the weekly meeting. All sites are connected to web marketing campaigns and I implement
+                        activCampaign on all sites through ConvertPlug plugin. I regularly make multiple pages with
+                        slight differences in order to be A/B tested for their effectiveness using Google Analytics and
+                        ConvertPlug
+                    </li>
+                </ul>
+                <span class="cd-date">03/2017 - Present</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+        <div class="cd-timeline-block">
             <div class="cd-timeline-i cd-movie">
             </div> <!-- cd-timeline-img -->
 

@@ -5,7 +5,7 @@
         <ul>
             @foreach($activities as $activity)
                 <li>
-                    <a href="/activities/{{$activity->id}}/activity">
+                    <a href="/travel/activities/{{$activity->id}}/activity">
                         {{$activity->activity_name}}
                     </a>
                 </li>
