@@ -4,7 +4,7 @@
        <ul>
 
        </ul>
-       <a class="nav-link active" href="/">Home</a>
+       <a class="nav-link active" href="/travel">Home</a>
        <a class="nav-link" href="/travel/about">About</a>
 
  <!-- Authentication Links -->
