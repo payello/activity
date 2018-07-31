@@ -7,7 +7,7 @@
 
   @if (session('status'))
     <div class="alert alert-success">
-      <p class="success">The Activity has been updated.</p>
+      <p class="success">{{ session('status') }}.</p>
     </div>
   @endif
 

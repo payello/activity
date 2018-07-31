@@ -68,19 +68,18 @@ class PostController extends Controller
         // Create a new post using the request data
         // Save it to the database
         $this->validate($request, array(
-            'title' => 'required',
-            'body' => 'required',
+            'title'      => 'required',
+            'body'       => 'required',
             'country_id' => 'required|integer',
-            'image' => 'image'
+            'image'      => 'required|image'
 
         ));
 
         $post = Post::create([
-            'title' => request('title'),
-            'body' => request('body'),
+            'title'      => request('title'),
+            'body'       => request('body'),
             'country_id' => request('country_id'),
-            'user_id' => auth()->id(),
-
+            'user_id'    => auth()->id(),
         ]);
 
         if ($request->hasFile('image')) {
@@ -95,7 +94,6 @@ class PostController extends Controller
         $post->save();
 
         $post->activities()->sync($request->activities, false);
-
 
         // And then redirect to somewhere in  application
         return redirect()->route('posts.show', $post->id);
@@ -132,7 +130,6 @@ class PostController extends Controller
             $ctry[$country->id] = $country->countryname;
         }
 
-
         $activity2 = array();
         foreach ($activities as $activity) {
             $activity2[$activity->id] = $activity->activity_name;
@@ -145,7 +142,7 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  int                      $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -170,13 +167,18 @@ class PostController extends Controller
             Storage::delete($oldimage);
         }
 
-        $post->save();
-
         if (isset($request->activities)) {
             $post->activities()->sync($request->activities);
         } else {
             $post->activities()->sync(array());
         }
+
+        if (isset($request->countries)) {
+            $post->country_id = $request->input('countries')[0];
+        }
+
+        $post->save();
+
         $request->session()->flash('success', 'This trip has been modified.');
 
         return redirect()->route('posts.show', $post->id);
@@ -187,7 +189,7 @@ class PostController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Request $request
-     * @param $id
+     * @param         $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -205,7 +207,7 @@ class PostController extends Controller
 
         $request->session()->flash('success', 'Your trip has been removed.');
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('status', $post->title . ' has been removed');
     }
 
     public function activities()

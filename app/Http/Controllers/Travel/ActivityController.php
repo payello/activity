@@ -97,7 +97,7 @@ class ActivityController extends Controller
 
         $activity->save();
 
-        return redirect()->route('activities.show', $activity->id)->with('status', 'The activity has been modified.');
+        return redirect()->route('activities.show', $activity->id)->with('status', $activity->activity_name . ' has been modified.');
     }
 
     /**

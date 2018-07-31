@@ -8,12 +8,10 @@
                 <h1>{{$post->title}}</h1>
             </div>
 
-
             <div class="well col-sm-2 col-sm-offset-2">
                 <img height="60" src="{{ $post->countries->countrycode }}" alt="">
                 <caption>{{ $post->countries->countryname }}</caption>
             </div>
-
 
         </div>
 
@@ -38,9 +36,11 @@
                     </button>
                 </a>
                 <div class="blockquote">
-                    {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'data-id'=>'$post->id']) !!}
-
+                    <form class="delete" action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                        <input class="btn btn-danger" type="submit" value="Delete">
+                    </form>
                 </div>
             </div>
             {!! Form::close() !!}
@@ -58,7 +58,7 @@
                 @foreach($post->comments as $comment)
                     <li class="list-group-item">
                         <strong>
-                            {{$comment->created_at->diffForHumans()}}:&nbsp;
+                            {{$comment->created_at->diffForHumans() }}:&nbsp;
                         </strong>
                         {{$comment->body}}
                     </li>
@@ -91,26 +91,8 @@
 @section('scripts')
     <script type="text/javascript">
 
-        $(document).on('click', '.button', function (e) {
-            e.preventDefault();
-            var id = $(this).data('id');
-            swal({
-                        title: "Are you sure!",
-                        type: "error",
-                        confirmButtonClass: "btn-danger",
-                        confirmButtonText: "Yes!",
-                        showCancelButton: true,
-                    },
-                    function () {
-                        $.ajax({
-                            type: "POST",
-                            url: "{{url('/destroy')}}",
-                            data: {id: id},
-                            success: function (data) {
-                                //
-                            }
-                        });
-                    });
+        $(".delete").on("submit", function(){
+            return confirm("Do you want to delete this item?");
         });
     </script>
 @endsection

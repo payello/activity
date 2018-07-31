@@ -10,6 +10,7 @@
             <h1>Edit the Activity Holiday</h1>
 
             <hr>
+
             {!! Form::model($post, ['route'=>['posts.update', $post->id], 'method'=>'PUT', 'files'=>true]) !!}
             {{Form::label('title', 'Title:') }}
             {{Form::text('title', null, ["class"=> 'form-control']) }}
@@ -18,8 +19,10 @@
             {{ Form:: textarea('body', null, ['class'=>'form-control']) }}
 
             {{ Form::label('countries', 'Country: ')}}
-            {{ Form::select('countries[]', $countries, null,['class'=>'form-control select2-single']) }}
+            {{ Form::select('countries[]', $countries, null ,['class'=>'form-control select2-single']) }}
 
+            {{--<label for="countries">Country:</label>--}}
+            {{--<select name="countries[]" id="" class=""></select>--}}
             {{ Form::label('activities', 'Activities: ', ['class'=>'form-spacing-top']) }}
             {{ Form::select('activities[]', $activities, null, ['class'=>'form-control select2-multi', 'multiple'=>'multiple']) }}
 
@@ -35,10 +38,40 @@
             {!! Form::close() !!}
     </div>
 
+    {{--<form method="POST" action="/posts/{{ $post->id }}" enctype="multipart/form-data">--}}
+
+        {{--{{ csrf_field() }}--}}
+        {{--{{ method_field('PATCH') }}--}}
+        {{--<div class="form-group">--}}
+            {{--<label for="title">Title</label>--}}
+            {{--<input name="title" type="text" class="form-control" value="{{ $post->title }}" required>--}}
+        {{--</div>--}}
+        {{--<div class="form-group">--}}
+            {{--<label for="description">Description</label>--}}
+            {{--<input name="description" type="text" class="form-control"--}}
+                   {{--value="{{ $post->title }}" required>--}}
+        {{--</div>--}}
+        {{--<div class="form-group">--}}
+            {{--<label for="activities">Activities:</label>--}}
+            {{--<select name="activities[]" class="form-control select2-single"--}}
+                    {{--value="{{ old($post->activity->activity_name) }}" id="">--}}
+                {{--@foreach($activities as $activity)--}}
+                    {{--<option value="{{ $activity->id }}">{{ $activity->activity_name }}</option>--}}
+            {{--</select>--}}
+            {{--@endforeach--}}
+        {{--</div>--}}
+
+        {{--<div class="form-group">--}}
+
+            {{--<button type="submit" class="btn btn-primary">Update</button>--}}
+
+        {{--</div>--}}
+
+    {{--</form>--}}
     @endif
 
     @include('layouts.errors')
-    </form>
+
 
 
     @if(Auth::guest())
